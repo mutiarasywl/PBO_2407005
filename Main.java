@@ -1,44 +1,77 @@
-package latihan_pbo2;
+import java.util.Scanner;
 
-public class Main {
+class Kalkulator {
 
-    static class Cafe {
+    double angka1;
+    double angka2;
 
-        private String nama;
-        private String alamat;
-        private double panjang;
-        private double lebar;
-
-        public Cafe(String nama, String alamat, double panjang, double lebar) {
-            this.nama = nama;
-            this.alamat = alamat;
-            this.panjang = panjang;
-            this.lebar = lebar;
-        }
-
-        public double hitungLuas() {
-            return panjang * lebar;
-        }
-
-        public double hitungKeliling() {
-            return 2 * (panjang + lebar);
-        }
-
-        public void tampilkanInfo() {
-            System.out.println("Nama Cafe   : " + nama);
-            System.out.println("Alamat      : " + alamat);
-            System.out.println("Panjang     : " + panjang);
-            System.out.println("Lebar       : " + lebar);
-            System.out.println("Luas        : " + hitungLuas() + " m2");
-            System.out.println("Keliling    : " + hitungKeliling() + " m");
-            System.out.println("===========================");
-        }
+    // Constructor
+    Kalkulator(double angka1, double angka2) {
+        this.angka1 = angka1;
+        this.angka2 = angka2;
     }
 
+    double tambah() {
+        return angka1 + angka2;
+    }
+
+    double kurang() {
+        return angka1 - angka2;
+    }
+
+    double kali() {
+        return angka1 * angka2;
+    }
+
+    double bagi() {
+        if (angka2 != 0) {
+            return angka1 / angka2;
+        } else {
+            System.out.println("Tidak bisa dibagi 0!");
+            return 0;
+        }
+    }
+}
+
+public class Main {
     public static void main(String[] args) {
 
-        Cafe cafe1 = new Cafe("Cafe Senja", "Indramayu", 15, 10);
+        Scanner input = new Scanner(System.in);
 
-        cafe1.tampilkanInfo();
+        System.out.print("Masukkan angka pertama: ");
+        double a = input.nextDouble();
+
+        System.out.print("Masukkan angka kedua: ");
+        double b = input.nextDouble();
+
+        Kalkulator k = new Kalkulator(a, b);
+
+        System.out.println("Pilih operasi:");
+        System.out.println("1. Tambah");
+        System.out.println("2. Kurang");
+        System.out.println("3. Kali");
+        System.out.println("4. Bagi");
+
+        System.out.print("Pilihan: ");
+        int pilihan = input.nextInt();
+
+        switch (pilihan) {
+            case 1:
+                System.out.println("Hasil: " + k.tambah());
+                break;
+            case 2:
+                System.out.println("Hasil: " + k.kurang());
+                break;
+            case 3:
+                System.out.println("Hasil: " + k.kali());
+                break;
+            case 4:
+                System.out.println("Hasil: " + k.bagi());
+                break;
+            default:
+                System.out.println("Pilihan tidak valid!");
+        }
+
+        input.close();
     }
 }
