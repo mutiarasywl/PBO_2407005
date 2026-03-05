@@ -1,42 +1,22 @@
 import java.util.Scanner;
 
-class Bangunan {
+class Cafe {
+    String namaCafe;
+    double sisiRuangan;
+    double panjangParkir;
+    double lebarParkir;
+    double jariMeja;
 
-    private String namaBangunan;
-
-    public void setNamaBangunan(String namaBangunan) {
-        this.namaBangunan = namaBangunan;
+    public double luasRuangan() {
+        return sisiRuangan * sisiRuangan;
     }
 
-    public String getNamaBangunan() {
-        return namaBangunan;
+    public double luasParkir() {
+        return panjangParkir * lebarParkir;
     }
 
-    // PERSEGI
-    public double luasPersegi(double sisi) {
-        return sisi * sisi;
-    }
-
-    public double kelilingPersegi(double sisi) {
-        return 4 * sisi;
-    }
-
-    // PERSEGI PANJANG
-    public double luasPersegiPanjang(double panjang, double lebar) {
-        return panjang * lebar;
-    }
-
-    public double kelilingPersegiPanjang(double panjang, double lebar) {
-        return 2 * (panjang + lebar);
-    }
-
-    // LINGKARAN
-    public double luasLingkaran(double jari) {
-        return 3.14 * jari * jari;
-    }
-
-    public double kelilingLingkaran(double jari) {
-        return 2 * 3.14 * jari;
+    public double luasMeja() {
+        return 3.14 * jariMeja * jariMeja;
     }
 }
 
@@ -44,49 +24,33 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
-        Bangunan bangunan = new Bangunan();
+        Cafe cafe = new Cafe();
 
-        System.out.println("=== DATA PERUMAHAN ===");
-        System.out.print("Masukkan Nama Bangunan: ");
-        bangunan.setNamaBangunan(input.nextLine());
+        System.out.println("=== PROMO GRAND OPENING CAFE ===");
 
-        System.out.println("\n=== PILIH BANGUN DATAR ===");
-        System.out.println("1. Persegi");
-        System.out.println("2. Persegi Panjang");
-        System.out.println("3. Lingkaran");
-        System.out.print("Pilihan (1-3): ");
-        int pilihan = input.nextInt();
+        System.out.print("Masukkan Nama Cafe: ");
+        cafe.namaCafe = input.nextLine();
 
-        System.out.println("\nNama Bangunan: " + bangunan.getNamaBangunan());
+        System.out.print("Masukkan Sisi Ruangan (m): ");
+        cafe.sisiRuangan = input.nextDouble();
 
-        switch (pilihan) {
+        System.out.print("Masukkan Panjang Area Parkir (m): ");
+        cafe.panjangParkir = input.nextDouble();
 
-            case 1:
-                System.out.print("Masukkan Sisi: ");
-                double sisi = input.nextDouble();
-                System.out.println("Luas Persegi      : " + bangunan.luasPersegi(sisi));
-                System.out.println("Keliling Persegi  : " + bangunan.kelilingPersegi(sisi));
-                break;
+        System.out.print("Masukkan Lebar Area Parkir (m): ");
+        cafe.lebarParkir = input.nextDouble();
 
-            case 2:
-                System.out.print("Masukkan Panjang: ");
-                double panjang = input.nextDouble();
-                System.out.print("Masukkan Lebar: ");
-                double lebar = input.nextDouble();
-                System.out.println("Luas Persegi Panjang     : " + bangunan.luasPersegiPanjang(panjang, lebar));
-                System.out.println("Keliling Persegi Panjang : " + bangunan.kelilingPersegiPanjang(panjang, lebar));
-                break;
+        System.out.print("Masukkan Jari-jari Meja Bundar (m): ");
+        cafe.jariMeja = input.nextDouble();
 
-            case 3:
-                System.out.print("Masukkan Jari-jari: ");
-                double jari = input.nextDouble();
-                System.out.println("Luas Lingkaran     : " + bangunan.luasLingkaran(jari));
-                System.out.println("Keliling Lingkaran : " + bangunan.kelilingLingkaran(jari));
-                break;
-
-            default:
-                System.out.println("Pilihan tidak tersedia!");
-        }
+        System.out.println("\n===== IKLAN CAFE =====");
+        System.out.println("Selamat Datang di " + cafe.namaCafe + " ☕");
+        System.out.println("Cafe kami memiliki:");
+        System.out.println("- Luas Ruangan Indoor : " + cafe.luasRuangan() + " m2");
+        System.out.println("- Luas Area Parkir    : " + cafe.luasParkir() + " m2");
+        System.out.println("- Luas Meja Bundar    : " + cafe.luasMeja() + " m2");
+        System.out.println("\nNikmati suasana nyaman dan tempat luas bersama teman & keluarga!");
+        System.out.println("GRAND OPENING DISKON 20% 🎉");
 
         input.close();
     }
