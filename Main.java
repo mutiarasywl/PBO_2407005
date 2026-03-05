@@ -1,35 +1,42 @@
 import java.util.Scanner;
 
-class Kalkulator {
+class Bangunan {
 
-    double angka1;
-    double angka2;
+    private String namaBangunan;
 
-    // Constructor
-    Kalkulator(double angka1, double angka2) {
-        this.angka1 = angka1;
-        this.angka2 = angka2;
+    public void setNamaBangunan(String namaBangunan) {
+        this.namaBangunan = namaBangunan;
     }
 
-    double tambah() {
-        return angka1 + angka2;
+    public String getNamaBangunan() {
+        return namaBangunan;
     }
 
-    double kurang() {
-        return angka1 - angka2;
+    // PERSEGI
+    public double luasPersegi(double sisi) {
+        return sisi * sisi;
     }
 
-    double kali() {
-        return angka1 * angka2;
+    public double kelilingPersegi(double sisi) {
+        return 4 * sisi;
     }
 
-    double bagi() {
-        if (angka2 != 0) {
-            return angka1 / angka2;
-        } else {
-            System.out.println("Tidak bisa dibagi 0!");
-            return 0;
-        }
+    // PERSEGI PANJANG
+    public double luasPersegiPanjang(double panjang, double lebar) {
+        return panjang * lebar;
+    }
+
+    public double kelilingPersegiPanjang(double panjang, double lebar) {
+        return 2 * (panjang + lebar);
+    }
+
+    // LINGKARAN
+    public double luasLingkaran(double jari) {
+        return 3.14 * jari * jari;
+    }
+
+    public double kelilingLingkaran(double jari) {
+        return 2 * 3.14 * jari;
     }
 }
 
@@ -37,39 +44,48 @@ public class Main {
     public static void main(String[] args) {
 
         Scanner input = new Scanner(System.in);
+        Bangunan bangunan = new Bangunan();
 
-        System.out.print("Masukkan angka pertama: ");
-        double a = input.nextDouble();
+        System.out.println("=== DATA PERUMAHAN ===");
+        System.out.print("Masukkan Nama Bangunan: ");
+        bangunan.setNamaBangunan(input.nextLine());
 
-        System.out.print("Masukkan angka kedua: ");
-        double b = input.nextDouble();
-
-        Kalkulator k = new Kalkulator(a, b);
-
-        System.out.println("Pilih operasi:");
-        System.out.println("1. Tambah");
-        System.out.println("2. Kurang");
-        System.out.println("3. Kali");
-        System.out.println("4. Bagi");
-
-        System.out.print("Pilihan: ");
+        System.out.println("\n=== PILIH BANGUN DATAR ===");
+        System.out.println("1. Persegi");
+        System.out.println("2. Persegi Panjang");
+        System.out.println("3. Lingkaran");
+        System.out.print("Pilihan (1-3): ");
         int pilihan = input.nextInt();
 
+        System.out.println("\nNama Bangunan: " + bangunan.getNamaBangunan());
+
         switch (pilihan) {
+
             case 1:
-                System.out.println("Hasil: " + k.tambah());
+                System.out.print("Masukkan Sisi: ");
+                double sisi = input.nextDouble();
+                System.out.println("Luas Persegi      : " + bangunan.luasPersegi(sisi));
+                System.out.println("Keliling Persegi  : " + bangunan.kelilingPersegi(sisi));
                 break;
+
             case 2:
-                System.out.println("Hasil: " + k.kurang());
+                System.out.print("Masukkan Panjang: ");
+                double panjang = input.nextDouble();
+                System.out.print("Masukkan Lebar: ");
+                double lebar = input.nextDouble();
+                System.out.println("Luas Persegi Panjang     : " + bangunan.luasPersegiPanjang(panjang, lebar));
+                System.out.println("Keliling Persegi Panjang : " + bangunan.kelilingPersegiPanjang(panjang, lebar));
                 break;
+
             case 3:
-                System.out.println("Hasil: " + k.kali());
+                System.out.print("Masukkan Jari-jari: ");
+                double jari = input.nextDouble();
+                System.out.println("Luas Lingkaran     : " + bangunan.luasLingkaran(jari));
+                System.out.println("Keliling Lingkaran : " + bangunan.kelilingLingkaran(jari));
                 break;
-            case 4:
-                System.out.println("Hasil: " + k.bagi());
-                break;
+
             default:
-                System.out.println("Pilihan tidak valid!");
+                System.out.println("Pilihan tidak tersedia!");
         }
 
         input.close();
